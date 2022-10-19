@@ -2,7 +2,7 @@
   "name": "vue-cool-lightbox-next",
   "private": false,
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "author": "LLNet",
   "files": [
@@ -35,7 +35,8 @@
     ".": {
       "import": "./dist/vue-cool-lightbox-next.es.js",
       "require": "./dist/vue-cool-lightbox-next.umd.js"
-    }
+    },
+    "./dist/style.css": "./dist/style.css"
   },
   "dependencies": {
     "body-scroll-lock": "^4.0.0-beta.0",
