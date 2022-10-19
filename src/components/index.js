@@ -1,0 +1,1 @@
+export { default as CoolLightBox } from './components/CoolLightBox.vue'
