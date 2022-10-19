@@ -97,8 +97,8 @@
                 @touchstart="handleMouseDown($event)"
                 @touchmove="handleMouseMove($event)"
                 @touchend="handleMouseUp($event)"
-                />
-              <picture :key="itemIndex" v-else>
+              />
+              <picture v-else>
                 <source
                     v-for="(source, sourceIndex) in getPictureSources(itemIndex)"
                     :data-srcset="source.srcset"
@@ -241,39 +241,41 @@
 
               <div v-else key="video" class="cool-lightbox__iframe">
                 <transition name="cool-lightbox-slide-change" mode="out-in">
-                  <iframe
-                    class="cool-lightbox-video"
-                    v-autoplayObserver
-                    :data-autoplay="setAutoplay(imgIndex)"
-                    :src="getVideoUrl(getItemSrc(imgIndex))"
-                    v-if="(!checkIsMp4(getItemSrc(imgIndex)) && getMediaType(imgIndex) === 'video')"
-                    :style="aspectRatioVideo"
-                    :key="getVideoUrl(getItemSrc(imgIndex))"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                  </iframe>
+                  <div>
+                    <iframe
+                        class="cool-lightbox-video"
+                        v-autoplayObserver
+                        :data-autoplay="setAutoplay(imgIndex)"
+                        :src="getVideoUrl(getItemSrc(imgIndex))"
+                        v-if="(!checkIsMp4(getItemSrc(imgIndex)) && getMediaType(imgIndex) === 'video')"
+                        :style="aspectRatioVideo"
+                        :key="getVideoUrl(getItemSrc(imgIndex))"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
 
-                  <iframe
-                    class="cool-lightbox-pdf"
-                    :src="getItemSrc(imgIndex)"
-                    v-if="(getMediaType(imgIndex) === 'iframe') || (getPDFurl(getItemSrc(imgIndex)))"
-                    :key="imgIndex"
-                    frameborder="0"
-                    allowfullscreen>
-                  </iframe>
+                    <iframe
+                        class="cool-lightbox-pdf"
+                        :src="getItemSrc(imgIndex)"
+                        v-if="(getMediaType(imgIndex) === 'iframe') || (getPDFurl(getItemSrc(imgIndex)))"
+                        :key="imgIndex"
+                        frameborder="0"
+                        allowfullscreen>
+                    </iframe>
 
-                  <video class="cool-lightbox-video"
-                    v-autoplayObserver
-                    :data-autoplay="setAutoplay(imgIndex)"
-                    v-if="checkIsMp4(getItemSrc(imgIndex)) || getMediaType(imgIndex) === 'webVideo'"
-                    :style="aspectRatioVideo" :key="checkIsMp4(getItemSrc(imgIndex))"
-                    controls=""
-                    controlslist="nodownload"
-                    poster="">
-                    <source :src="checkIsMp4(getItemSrc(imgIndex))" :type="'video/'+(getVideoExt(getItemSrc(imgIndex)) ? getVideoExt(getItemSrc(imgIndex)) : getExtFromItem(imgIndex))">
-                    Sorry, your browser doesn't support embedded videos
-                  </video>
+                    <video class="cool-lightbox-video"
+                           v-autoplayObserver
+                           :data-autoplay="setAutoplay(imgIndex)"
+                           v-if="checkIsMp4(getItemSrc(imgIndex)) || getMediaType(imgIndex) === 'webVideo'"
+                           :style="aspectRatioVideo" :key="checkIsMp4(getItemSrc(imgIndex))"
+                           controls=""
+                           controlslist="nodownload"
+                           poster="">
+                      <source :src="checkIsMp4(getItemSrc(imgIndex))" :type="'video/'+(getVideoExt(getItemSrc(imgIndex)) ? getVideoExt(getItemSrc(imgIndex)) : getExtFromItem(imgIndex))">
+                      Sorry, your browser doesn't support embedded videos
+                    </video>
+                  </div>
                 </transition>
               </div>
               <!--/cool-lightbox__iframe-->
@@ -653,7 +655,7 @@ export default {
         if(this.enableWheelEvent) {
           window.addEventListener('wheel', this.wheelEvent)
         }
-        
+
         // add click event
         setTimeout(function() {
           window.addEventListener('click', self.showButtons)
@@ -1791,8 +1793,8 @@ export default {
       ];
       const isValidExtension = videoExtensions.filter((videoExtension) => {
         return (
-          str.indexOf(videoExtension) !== -1
-          || str.indexOf(videoExtension.toUpperCase()) !== -1
+            str.indexOf(videoExtension) !== -1
+            || str.indexOf(videoExtension.toUpperCase()) !== -1
         );
       }).length > 0;
       if (isValidExtension) {

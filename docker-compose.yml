@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  vue-cool-lightbox:
+    ports:
+      - "3000:3000"
+    container_name: vue-cool-lightbox
+    build:
+      context: docker/ubuntu
+      args:
+        - USER_ID=1000
+        - GROUP_ID=1000
+    image: node/vue-cool-lightbox
+    user: 1000:1000
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+    command: "npm run dev"
+    working_dir: /app
