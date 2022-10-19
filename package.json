@@ -2,7 +2,7 @@
   "name": "vue-cool-lightbox-next",
   "private": false,
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
   "author": "LLNet",
   "files": [
@@ -24,8 +24,8 @@
     "image gallery",
     "image lightbox"
   ],
-  "main": "./dist/CoolLightBox.umd.js",
-  "module": "./dist/CoolLightBox.es.js",
+  "main": "./dist/vue-cool-lightbox-next.umd.js",
+  "module": "./dist/vue-cool-lightbox-next.es.js",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
@@ -33,10 +33,9 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/CoolLightBox.es.js",
-      "require": "./dist/CoolLightBox.umd.js"
-    },
-    "./style": "./dist/CoolLightBox.css"
+      "import": "./dist/vue-cool-lightbox-next.es.js",
+      "require": "./dist/vue-cool-lightbox-next.umd.js"
+    }
   },
   "dependencies": {
     "body-scroll-lock": "^4.0.0-beta.0",

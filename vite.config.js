@@ -10,9 +10,9 @@ export default defineConfig({
   },
   build: {
     lib: {
-        entry: path.resolve(__dirname, 'src/index.js'),
-        name: 'CoolLightBox',
-        fileName: (format) => `CoolLightBox.${format}.js`,
+        entry: path.resolve(__dirname, 'src/components/index.js'),
+        name: 'CoolLightBoxNext',
+        fileName: (format) => `vue-cool-lightbox-next.${format}.js`,
     },
     rollupOptions: {
         external: ['vue'],

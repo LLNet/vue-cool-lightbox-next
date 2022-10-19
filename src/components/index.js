@@ -1,1 +1,3 @@
-export { default as CoolLightBox } from './components/CoolLightBox.vue'
+import CoolLightBox from './CoolLightBox.vue'
+
+export { CoolLightBox }
