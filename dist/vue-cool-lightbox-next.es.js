@@ -1,6 +1,6 @@
 import { resolveDirective as D, openBlock as u, createBlock as E, Transition as p, withCtx as b, createElementBlock as d, normalizeClass as x, normalizeStyle as w, createElementVNode as h, Fragment as T, renderList as P, createCommentVNode as c, withDirectives as f, renderSlot as S, vShow as M, createTextVNode as z, createVNode as I, vModelText as R } from "vue";
 const U = ["media", "srcset", "sizes", "src"], H = {
-  inserted: (e) => {
+  created: (e) => {
     function t() {
       const o = W(e, "img"), i = W(e, "picture");
       if (o)
@@ -46,7 +46,7 @@ function W(e, t) {
   );
 }
 const j = {
-  inserted: (e) => {
+  created: (e) => {
     function t(i) {
       const m = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
       return !!(i.match(m) ? RegExp.$1 : !1);
@@ -1062,10 +1062,10 @@ function nt(e, t, s, n, o, i) {
                     onTouchend: t[17] || (t[17] = (a) => i.handleMouseUp(a))
                   }, null, 40, ve)
                 ])) : (u(), d("img", {
+                  key: 0,
                   "data-src": i.getItemSrc(r),
                   "data-srcset": i.getItemSrcSet(r),
                   "data-sizes": i.getItemSizes(r),
-                  key: r,
                   draggable: "false",
                   alt: i.getItemAlt(r),
                   onLoad: t[2] || (t[2] = (...a) => i.imageLoaded && i.imageLoaded(...a)),
