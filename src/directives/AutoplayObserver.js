@@ -1,5 +1,5 @@
 export default {
-    inserted: el => {
+  created: el => {
       // getYoutube ID
       function isYoutubeVideo(url) {
 

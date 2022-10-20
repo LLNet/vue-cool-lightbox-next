@@ -1,7 +1,7 @@
 const attributes = ['media', 'srcset', 'sizes', 'src'];
 
 export default {
-  inserted: el => {
+  created: el => {
 
     function loadImage() {
       const imageElement = findChild(el, 'img')

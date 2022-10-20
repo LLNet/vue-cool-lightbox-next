@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <CoolLightBox
-        effect="fade"
         :items="items"
         :index="index"
         @on-change-end="plyr"

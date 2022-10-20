@@ -78,12 +78,13 @@
           >
             <div
                 v-lazyload
-                v-if="getMediaType(itemIndex) === 'image'" key="image" :style="imgWrapperStyle" class="cool-lightbox__slide__img">
-              <img v-if="!isItemPicture(itemIndex)"
+                v-if="getMediaType(itemIndex) === 'image'" key="image" :style="imgWrapperStyle" class="cool-lightbox__slide__img"
+            >
+              <img
+                v-if="!isItemPicture(itemIndex)"
                 :data-src="getItemSrc(itemIndex)"
                 :data-srcset="getItemSrcSet(itemIndex)"
                 :data-sizes="getItemSizes(itemIndex)"
-                :key="itemIndex"
                 draggable="false"
                 :alt="getItemAlt(itemIndex)"
 
