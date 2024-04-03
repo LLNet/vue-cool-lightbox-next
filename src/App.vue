@@ -73,7 +73,11 @@ export default {
         },
         {
           src: 'https://www.youtube.com/watch?v=Jbhs988R95c'
-        }
+        },
+        {
+          mediaType: "video",
+          src: 'https://view.vzaar.com/6f69c3b9-ab5d-7a42-5bfc-66009177ab78/player',
+        },
       ],
       index: null
     };

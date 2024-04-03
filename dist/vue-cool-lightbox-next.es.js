@@ -1,5 +1,5 @@
-import { resolveDirective as D, openBlock as u, createBlock as E, Transition as p, withCtx as b, createElementBlock as d, normalizeClass as x, normalizeStyle as w, createElementVNode as h, Fragment as T, renderList as P, createCommentVNode as c, withDirectives as f, renderSlot as S, vShow as M, createTextVNode as z, createVNode as I, vModelText as R } from "vue";
-const U = ["media", "srcset", "sizes", "src"], H = {
+import { resolveDirective as D, openBlock as u, createBlock as E, Transition as p, withCtx as b, createElementBlock as d, normalizeClass as x, normalizeStyle as w, createElementVNode as a, Fragment as T, renderList as z, createCommentVNode as c, withDirectives as f, renderSlot as S, vShow as M, createTextVNode as P, toDisplayString as R, createVNode as I, vModelText as U } from "vue";
+const H = ["media", "srcset", "sizes", "src"], j = {
   created: (e) => {
     function t() {
       const o = W(e, "img"), i = W(e, "picture");
@@ -30,7 +30,7 @@ const U = ["media", "srcset", "sizes", "src"], H = {
   }
 };
 function V(e) {
-  U.forEach((t) => {
+  H.forEach((t) => {
     const s = e.dataset[t];
     s && (e[t] = s, e.removeAttribute(`data-${t}`));
   });
@@ -45,7 +45,7 @@ function W(e, t) {
     (s) => s.nodeName === t.toUpperCase()
   );
 }
-const j = {
+const q = {
   created: (e) => {
     function t(i) {
       const m = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
@@ -80,7 +80,7 @@ const j = {
     window.IntersectionObserver ? o() : loadImage();
   }
 };
-function q(e) {
+function G(e) {
   if (Array.isArray(e)) {
     for (var t = 0, s = Array(e.length); t < e.length; t++)
       s[t] = e[t];
@@ -104,7 +104,7 @@ var B = typeof window < "u" && window.navigator && window.navigator.platform && 
 }, L = function(t) {
   var s = t || window.event;
   return Y(s.target) || s.touches.length > 1 ? !0 : (s.preventDefault && s.preventDefault(), !1);
-}, G = function(t) {
+}, J = function(t) {
   if (k === void 0) {
     var s = !!t && t.reserveScrollBarGap === !0, n = window.innerWidth - document.documentElement.clientWidth;
     if (s && n > 0) {
@@ -113,9 +113,9 @@ var B = typeof window < "u" && window.navigator && window.navigator.platform && 
     }
   }
   _ === void 0 && (_ = document.body.style.overflow, document.body.style.overflow = "hidden");
-}, J = function() {
-  k !== void 0 && (document.body.style.paddingRight = k, k = void 0), _ !== void 0 && (document.body.style.overflow = _, _ = void 0);
 }, K = function() {
+  k !== void 0 && (document.body.style.paddingRight = k, k = void 0), _ !== void 0 && (document.body.style.overflow = _, _ = void 0);
+}, Q = function() {
   return window.requestAnimationFrame(function() {
     if (v === void 0) {
       v = {
@@ -132,17 +132,17 @@ var B = typeof window < "u" && window.navigator && window.navigator.platform && 
       }, 300);
     }
   });
-}, Q = function() {
+}, $ = function() {
   if (v !== void 0) {
     var t = -parseInt(document.body.style.top, 10), s = -parseInt(document.body.style.left, 10);
     document.body.style.position = v.position, document.body.style.top = v.top, document.body.style.left = v.left, window.scrollTo(s, t), v = void 0;
   }
-}, $ = function(t) {
+}, ee = function(t) {
   return t ? t.scrollHeight - t.scrollTop <= t.clientHeight : !1;
-}, ee = function(t, s) {
-  var n = t.targetTouches[0].clientY - X;
-  return Y(t.target) ? !1 : s && s.scrollTop === 0 && n > 0 || $(s) && n < 0 ? L(t) : (t.stopPropagation(), !0);
 }, te = function(t, s) {
+  var n = t.targetTouches[0].clientY - X;
+  return Y(t.target) ? !1 : s && s.scrollTop === 0 && n > 0 || ee(s) && n < 0 ? L(t) : (t.stopPropagation(), !0);
+}, ie = function(t, s) {
   if (!t) {
     console.error("disableBodyScroll unsuccessful - targetElement must be provided when calling disableBodyScroll on IOS devices.");
     return;
@@ -154,10 +154,10 @@ var B = typeof window < "u" && window.navigator && window.navigator.platform && 
       targetElement: t,
       options: s || {}
     };
-    y = [].concat(q(y), [n]), B ? K() : G(s), B && (t.ontouchstart = function(o) {
+    y = [].concat(G(y), [n]), B ? Q() : J(s), B && (t.ontouchstart = function(o) {
       o.targetTouches.length === 1 && (X = o.targetTouches[0].clientY);
     }, t.ontouchmove = function(o) {
-      o.targetTouches.length === 1 && ee(o, t);
+      o.targetTouches.length === 1 && te(o, t);
     }, C || (document.addEventListener("touchmove", L, F ? { passive: !1 } : void 0), C = !0));
   }
 }, A = function(t) {
@@ -167,17 +167,17 @@ var B = typeof window < "u" && window.navigator && window.navigator.platform && 
   }
   y = y.filter(function(s) {
     return s.targetElement !== t;
-  }), B && (t.ontouchstart = null, t.ontouchmove = null, C && y.length === 0 && (document.removeEventListener("touchmove", L, F ? { passive: !1 } : void 0), C = !1)), B ? Q() : J();
+  }), B && (t.ontouchstart = null, t.ontouchmove = null, C && y.length === 0 && (document.removeEventListener("touchmove", L, F ? { passive: !1 } : void 0), C = !1)), B ? $() : K();
 };
-const ie = (e, t) => {
+const se = (e, t) => {
   const s = e.__vccOpts || e;
   for (const [n, o] of t)
     s[n] = o;
   return s;
-}, se = {
+}, oe = {
   directives: {
-    lazyload: H,
-    autoplayObserver: j
+    lazyload: j,
+    autoplayObserver: q
   },
   data() {
     return {
@@ -355,7 +355,7 @@ const ie = (e, t) => {
       document.querySelector("body"), e !== null ? (this.swipeType = null, this.initialMouseY = 0, this.ySwipeWrapper = 0, this.loopData = this.loop, this.effect === "swipe" && (this.loopData = !1, window.addEventListener("resize", this.xPositionOnResize)), this.imgIndex = e, this.isVisible = !0, window.addEventListener("keydown", this.eventListener), this.enableWheelEvent && window.addEventListener("wheel", this.wheelEvent), setTimeout(function() {
         window.addEventListener("click", s.showButtons);
       }, 200), this.enableScrollLock && setTimeout(function() {
-        s.setCompensateForScrollbar(), te(s.$refs.coolLightbox);
+        s.setCompensateForScrollbar(), ie(s.$refs.coolLightbox);
       }, 50)) : (this.isVisible = !1, this.stopSlideShow(), this.startsX = 0, this.initialMouseY = 0, this.swipeType = null, clearInterval(this.swipeInterval), this.swipeAnimation = null, this.isDraggingSwipe = !1, this.isZooming = !0, window.removeEventListener("keydown", this.eventListener), this.enableScrollLock && (s.removeCompensateForScrollbar(), A(s.$refs.coolLightbox)), window.removeEventListener("click", this.showButtons), window.removeEventListener("resize", this.xPositionOnResize), this.enableWheelEvent && window.removeEventListener("wheel", this.wheelEvent));
     },
     imgIndex(e, t) {
@@ -728,8 +728,8 @@ const ie = (e, t) => {
       return this.imgIndex === null ? !1 : new String(e).endsWith(".pdf") ? e : !1;
     },
     getVideoUrl(e) {
-      const t = this.getYoutubeUrl(e), s = this.getVimeoUrl(e), n = this.checkIsMp4(e);
-      return t || s || n || !1;
+      const t = this.getYoutubeUrl(e), s = this.getVimeoUrl(e), n = this.getVzaarVideo(e), o = this.checkIsMp4(e);
+      return t || s || n || o || !1;
     },
     getYoutubeID(e) {
       const t = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/, s = e.match(t) ? RegExp.$1 : !1;
@@ -746,6 +746,10 @@ const ie = (e, t) => {
     getVimeoUrl(e) {
       const t = e.match(/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i);
       return t !== null ? "//player.vimeo.com/video/" + t[1] + "?hd=1&show_title=1&show_byline=1&show_portrait=0&fullscreen=1" : !1;
+    },
+    getVzaarVideo(e) {
+      const t = /(?:https?:\/\/)?(?:view\.)?vzaar\.com\/(?:videos\/)?([a-z0-9-]+)(?:\/player)?/i, s = e.match(t) ? RegExp.$1 : !1;
+      return s ? "https://view.vzaar.com/" + s + "/player" : !1;
     },
     checkIsMp4(e) {
       if (this.imgIndex === null)
@@ -837,56 +841,56 @@ const ie = (e, t) => {
       return this.imgIndex - 1 >= 0;
     }
   }
-}, oe = {
+}, le = {
   key: 0,
   class: "cool-lightbox-thumbs"
-}, le = { class: "cool-lightbox-thumbs__list" }, ne = ["onClick"], re = {
+}, ne = { class: "cool-lightbox-thumbs__list" }, re = ["onClick"], ae = {
   key: 0,
   class: "cool-lightbox__thumb__icon",
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
-}, he = /* @__PURE__ */ h("path", { d: "M6.5 5.4v13.2l11-6.6z" }, null, -1), ae = [
+}, he = /* @__PURE__ */ a("path", { d: "M6.5 5.4v13.2l11-6.6z" }, null, -1), ue = [
   he
-], ue = ["src"], de = { class: "cool-lightbox__navigation" }, ce = ["title"], ge = /* @__PURE__ */ h("div", { class: "cool-lightbox-button__icon" }, [
-  /* @__PURE__ */ h("svg", {
+], de = ["src"], ce = { class: "cool-lightbox__navigation" }, ge = ["title"], me = /* @__PURE__ */ a("div", { class: "cool-lightbox-button__icon" }, [
+  /* @__PURE__ */ a("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24"
   }, [
-    /* @__PURE__ */ h("path", { d: "M11.28 15.7l-1.34 1.37L5 12l4.94-5.07 1.34 1.38-2.68 2.72H19v1.94H8.6z" })
+    /* @__PURE__ */ a("path", { d: "M11.28 15.7l-1.34 1.37L5 12l4.94-5.07 1.34 1.38-2.68 2.72H19v1.94H8.6z" })
   ])
-], -1), me = ["title"], fe = /* @__PURE__ */ h("div", { class: "cool-lightbox-button__icon" }, [
-  /* @__PURE__ */ h("svg", {
+], -1), fe = ["title"], we = /* @__PURE__ */ a("div", { class: "cool-lightbox-button__icon" }, [
+  /* @__PURE__ */ a("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24"
   }, [
-    /* @__PURE__ */ h("path", { d: "M15.4 12.97l-2.68 2.72 1.34 1.38L19 12l-4.94-5.07-1.34 1.38 2.68 2.72H5v1.94z" })
+    /* @__PURE__ */ a("path", { d: "M15.4 12.97l-2.68 2.72 1.34 1.38L19 12l-4.94-5.07-1.34 1.38 2.68 2.72H5v1.94z" })
   ])
-], -1), we = ["data-src", "data-srcset", "data-sizes", "alt", "onClick"], pe = { key: 1 }, be = ["data-srcset", "data-media", "type", "data-sizes"], ve = ["data-src", "data-srcset", "data-sizes", "alt", "onClick"], ye = { class: "cool-lightbox-loading-wrapper" }, xe = /* @__PURE__ */ h("div", { class: "cool-lightbox-loading" }, null, -1), Ie = {
+], -1), pe = ["data-src", "data-srcset", "data-sizes", "alt", "onClick"], be = { key: 1 }, ve = ["data-srcset", "data-media", "type", "data-sizes"], ye = ["data-src", "data-srcset", "data-sizes", "alt", "onClick"], xe = { class: "cool-lightbox-loading-wrapper" }, Ie = /* @__PURE__ */ a("div", { class: "cool-lightbox-loading" }, null, -1), Se = {
   key: "video",
   class: "cool-lightbox__iframe"
-}, Se = ["data-autoplay", "src"], Me = ["src"], _e = ["data-autoplay"], ke = ["src", "type"], Te = {
+}, Me = ["data-autoplay", "src"], _e = ["src"], ke = ["data-autoplay"], Te = ["src", "type"], ze = {
   key: 1,
   class: "cool-lightbox__wrapper"
 }, Pe = {
   ref: "items",
   class: "cool-lightbox__slide cool-lightbox__slide--current"
-}, ze = ["src", "srcset", "sizes", "alt"], Be = ["srcset", "type", "media", "sizes"], Ce = ["src", "srcset", "sizes", "alt"], Le = { class: "cool-lightbox-loading-wrapper" }, Ee = /* @__PURE__ */ h("div", { class: "cool-lightbox-loading" }, null, -1), Ve = {
+}, Be = ["src", "srcset", "sizes", "alt"], Ce = ["srcset", "type", "media", "sizes"], Le = ["src", "srcset", "sizes", "alt"], Ee = { class: "cool-lightbox-loading-wrapper" }, Ve = /* @__PURE__ */ a("div", { class: "cool-lightbox-loading" }, null, -1), We = {
   key: "video",
   class: "cool-lightbox__iframe"
-}, We = ["data-autoplay", "src"], Fe = ["src"], De = ["data-autoplay"], Oe = ["src", "type"], Ne = {
+}, Fe = ["data-autoplay", "src"], De = ["src"], Oe = ["data-autoplay"], Ne = ["src", "type"], Ae = {
   key: "caption-block",
   class: "cool-lightbox-caption"
-}, Ae = ["innerHTML"], Xe = ["innerHTML"], Ye = ["title"], Ze = {
+}, Xe = ["innerHTML"], Ye = ["innerHTML"], Ze = ["title"], Re = {
   key: 0,
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
-}, Re = /* @__PURE__ */ h("path", { d: "M6.5 5.4v13.2l11-6.6z" }, null, -1), Ue = [
-  Re
-], He = {
+}, Ue = /* @__PURE__ */ a("path", { d: "M6.5 5.4v13.2l11-6.6z" }, null, -1), He = [
+  Ue
+], je = {
   key: 1,
   xmlns: "http://www.w3.org/2000/svg"
-}, je = /* @__PURE__ */ h("g", null, [
-  /* @__PURE__ */ h("rect", {
+}, qe = /* @__PURE__ */ a("g", null, [
+  /* @__PURE__ */ a("rect", {
     id: "svg_4",
     height: "11.97529",
     width: "11.728392",
@@ -896,59 +900,59 @@ const ie = (e, t) => {
     stroke: "#000",
     fill: "#000000"
   })
-], -1), qe = [
-  je
-], Ge = ["title"], Je = /* @__PURE__ */ h("svg", {
+], -1), Ge = [
+  qe
+], Je = ["title"], Ke = /* @__PURE__ */ a("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
 }, [
-  /* @__PURE__ */ h("path", { d: `M14.59 14.59h3.76v3.76h-3.76v-3.76zm-4.47
+  /* @__PURE__ */ a("path", { d: `M14.59 14.59h3.76v3.76h-3.76v-3.76zm-4.47
               0h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76H5.65v-3.76zm8.94-4.47h3.76v3.76h-3.76v-3.76zm-4.47
               0h3.76v3.76h-3.76v-3.76zm-4.47 0h3.76v3.76H5.65v-3.76zm8.94-4.47h3.76v3.76h-3.76V5.65zm-4.47
               0h3.76v3.76h-3.76V5.65zm-4.47 0h3.76v3.76H5.65V5.65z` })
-], -1), Ke = [
-  Je
-], Qe = ["title"], $e = /* @__PURE__ */ h("svg", {
+], -1), Qe = [
+  Ke
+], $e = ["title"], et = /* @__PURE__ */ a("svg", {
   width: "20px",
   height: "20px",
   viewBox: "0 0 18 18",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ h("path", { d: "M4.5 11H3v4h4v-1.5H4.5V11zM3 7h1.5V4.5H7V3H3v4zm10.5 6.5H11V15h4v-4h-1.5v2.5zM11 3v1.5h2.5V7H15V3h-4z" })
-], -1), et = [
-  $e
-], tt = ["title"], it = /* @__PURE__ */ h("svg", {
+  /* @__PURE__ */ a("path", { d: "M4.5 11H3v4h4v-1.5H4.5V11zM3 7h1.5V4.5H7V3H3v4zm10.5 6.5H11V15h4v-4h-1.5v2.5zM11 3v1.5h2.5V7H15V3h-4z" })
+], -1), tt = [
+  et
+], it = ["title"], st = /* @__PURE__ */ a("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   viewBox: "0 0 24 24"
 }, [
-  /* @__PURE__ */ h("path", { d: "M12 10.6L6.6 5.2 5.2 6.6l5.4 5.4-5.4 5.4 1.4 1.4 5.4-5.4 5.4 5.4 1.4-1.4-5.4-5.4 5.4-5.4-1.4-1.4-5.4 5.4z" })
-], -1), st = {
+  /* @__PURE__ */ a("path", { d: "M12 10.6L6.6 5.2 5.2 6.6l5.4 5.4-5.4 5.4 1.4 1.4 5.4-5.4 5.4 5.4 1.4-1.4-5.4-5.4 5.4-5.4-1.4-1.4-5.4 5.4z" })
+], -1), ot = {
   key: 0,
   class: "cool-lightbox-zoom"
-}, ot = /* @__PURE__ */ h("svg", {
+}, lt = /* @__PURE__ */ a("svg", {
   height: "469pt",
   class: "cool-lightbox-zoom__icon",
   viewBox: "0 -192 469.33333 469",
   width: "469pt",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ h("path", { d: `m437.332031.167969h-405.332031c-17.664062
+  /* @__PURE__ */ a("path", { d: `m437.332031.167969h-405.332031c-17.664062
             0-32 14.335937-32 32v21.332031c0 17.664062 14.335938 32 32 32h405.332031c17.664063 0 32-14.335938
             32-32v-21.332031c0-17.664063-14.335937-32-32-32zm0 0` })
-], -1), lt = /* @__PURE__ */ h("svg", {
+], -1), nt = /* @__PURE__ */ a("svg", {
   height: "426.66667pt",
   class: "cool-lightbox-zoom__icon",
   viewBox: "0 0 426.66667 426.66667",
   width: "426.66667pt",
   xmlns: "http://www.w3.org/2000/svg"
 }, [
-  /* @__PURE__ */ h("path", { d: `m405.332031 192h-170.664062v-170.667969c0-11.773437-9.558594-21.332031-21.335938-21.332031-11.773437 0-21.332031
+  /* @__PURE__ */ a("path", { d: `m405.332031 192h-170.664062v-170.667969c0-11.773437-9.558594-21.332031-21.335938-21.332031-11.773437 0-21.332031
             9.558594-21.332031 21.332031v170.667969h-170.667969c-11.773437 0-21.332031 9.558594-21.332031 21.332031 0
             11.777344 9.558594 21.335938 21.332031 21.335938h170.667969v170.664062c0 11.777344 9.558594 21.335938 21.332031
             21.335938 11.777344 0 21.335938-9.558594 21.335938-21.335938v-170.664062h170.664062c11.777344 0 21.335938-9.558594
             21.335938-21.335938 0-11.773437-9.558594-21.332031-21.335938-21.332031zm0 0` })
 ], -1);
-function nt(e, t, s, n, o, i) {
+function rt(e, t, s, n, o, i) {
   const m = D("lazyload"), g = D("autoplayObserver");
   return u(), E(p, { name: "cool-lightbox-modal" }, {
     default: b(() => [
@@ -959,26 +963,26 @@ function nt(e, t, s, n, o, i) {
         onClick: t[41] || (t[41] = (...l) => i.closeModal && i.closeModal(...l)),
         style: w(i.lightboxStyles)
       }, [
-        s.gallery ? (u(), d("div", oe, [
-          h("div", le, [
-            (u(!0), d(T, null, P(s.items, (l, r) => (u(), d("button", {
+        s.gallery ? (u(), d("div", le, [
+          a("div", ne, [
+            (u(!0), d(T, null, z(s.items, (l, r) => (u(), d("button", {
               type: "button",
               key: r,
               class: x([{
                 active: r === o.imgIndex,
                 "is-video": i.getMediaType(r) === "video"
               }, "cool-lightbox__thumb"]),
-              onClick: (a) => o.imgIndex = r
+              onClick: (h) => o.imgIndex = r
             }, [
-              i.getMediaType(r) === "video" ? (u(), d("svg", re, ae)) : c("", !0),
-              h("img", {
+              i.getMediaType(r) === "video" ? (u(), d("svg", ae, ue)) : c("", !0),
+              a("img", {
                 src: i.itemThumb(i.getItemSrc(r), r),
                 alt: ""
-              }, null, 8, ue)
-            ], 10, ne))), 128))
+              }, null, 8, de)
+            ], 10, re))), 128))
           ])
         ])) : c("", !0),
-        h("div", {
+        a("div", {
           class: "cool-lightbox__inner",
           style: w(i.innerStyles),
           onMousedown: t[34] || (t[34] = (...l) => i.startSwipe && i.startSwipe(...l)),
@@ -988,33 +992,33 @@ function nt(e, t, s, n, o, i) {
           onTouchmove: t[38] || (t[38] = (...l) => i.continueSwipe && i.continueSwipe(...l)),
           onTouchend: t[39] || (t[39] = (...l) => i.endSwipe && i.endSwipe(...l))
         }, [
-          h("div", {
+          a("div", {
             class: "cool-lightbox__progressbar",
             style: w(o.stylesInterval)
           }, null, 4),
-          h("div", de, [
-            f(h("button", {
+          a("div", ce, [
+            f(a("button", {
               type: "button",
               class: x(["cool-lightbox-button cool-lightbox-button--prev", i.buttonsClasses]),
               title: s.translations.previous,
               onClick: t[0] || (t[0] = (...l) => i.onPrevClick && i.onPrevClick(...l))
             }, [
               S(e.$slots, "icon-previous", {}, () => [
-                ge
+                me
               ])
-            ], 10, ce), [
+            ], 10, ge), [
               [M, (i.hasPreviousButton || o.loopData) && s.items.length > 1]
             ]),
-            f(h("button", {
+            f(a("button", {
               type: "button",
               class: x(["cool-lightbox-button cool-lightbox-button--next", i.buttonsClasses]),
               title: s.translations.next,
               onClick: t[1] || (t[1] = (l) => i.onNextClick(!1))
             }, [
               S(e.$slots, "icon-next", {}, () => [
-                fe
+                we
               ])
-            ], 10, me), [
+            ], 10, fe), [
               [M, (i.hasNextButton || o.loopData) && s.items.length > 1]
             ])
           ]),
@@ -1026,7 +1030,7 @@ function nt(e, t, s, n, o, i) {
               transition: o.swipeAnimation
             })
           }, [
-            (u(!0), d(T, null, P(s.items, (l, r) => (u(), d("div", {
+            (u(!0), d(T, null, z(s.items, (l, r) => (u(), d("div", {
               key: r,
               ref_for: !0,
               ref: "items",
@@ -1037,30 +1041,30 @@ function nt(e, t, s, n, o, i) {
                 style: w(i.imgWrapperStyle),
                 class: "cool-lightbox__slide__img"
               }, [
-                i.isItemPicture(r) ? (u(), d("picture", pe, [
-                  (u(!0), d(T, null, P(i.getPictureSources(r), (a, Z) => (u(), d("source", {
-                    "data-srcset": a.srcset,
-                    "data-media": a.media,
-                    type: a.type,
-                    "data-sizes": a.sizes || i.getItemSizes(o.imgIndex),
+                i.isItemPicture(r) ? (u(), d("picture", be, [
+                  (u(!0), d(T, null, z(i.getPictureSources(r), (h, Z) => (u(), d("source", {
+                    "data-srcset": h.srcset,
+                    "data-media": h.media,
+                    type: h.type,
+                    "data-sizes": h.sizes || i.getItemSizes(o.imgIndex),
                     key: `source-${o.imgIndex}-${Z}`
-                  }, null, 8, be))), 128)),
-                  h("img", {
+                  }, null, 8, ve))), 128)),
+                  a("img", {
                     "data-src": i.getItemSrc(r),
                     "data-srcset": i.getItemSrcSet(r),
                     "data-sizes": i.getItemSizes(r),
                     draggable: "false",
                     alt: i.getItemAlt(r),
-                    onLoad: t[10] || (t[10] = (...a) => i.imageLoaded && i.imageLoaded(...a)),
-                    onClick: (a) => i.zoomImage(r),
-                    onMousedown: t[11] || (t[11] = (a) => i.handleMouseDown(a)),
-                    onMouseup: t[12] || (t[12] = (a) => i.handleMouseUp(a)),
-                    onMouseleave: t[13] || (t[13] = (a) => i.handleMouseLeave(a)),
-                    onMousemove: t[14] || (t[14] = (a) => i.handleMouseMove(a)),
-                    onTouchstart: t[15] || (t[15] = (a) => i.handleMouseDown(a)),
-                    onTouchmove: t[16] || (t[16] = (a) => i.handleMouseMove(a)),
-                    onTouchend: t[17] || (t[17] = (a) => i.handleMouseUp(a))
-                  }, null, 40, ve)
+                    onLoad: t[10] || (t[10] = (...h) => i.imageLoaded && i.imageLoaded(...h)),
+                    onClick: (h) => i.zoomImage(r),
+                    onMousedown: t[11] || (t[11] = (h) => i.handleMouseDown(h)),
+                    onMouseup: t[12] || (t[12] = (h) => i.handleMouseUp(h)),
+                    onMouseleave: t[13] || (t[13] = (h) => i.handleMouseLeave(h)),
+                    onMousemove: t[14] || (t[14] = (h) => i.handleMouseMove(h)),
+                    onTouchstart: t[15] || (t[15] = (h) => i.handleMouseDown(h)),
+                    onTouchmove: t[16] || (t[16] = (h) => i.handleMouseMove(h)),
+                    onTouchend: t[17] || (t[17] = (h) => i.handleMouseUp(h))
+                  }, null, 40, ye)
                 ])) : (u(), d("img", {
                   key: 0,
                   "data-src": i.getItemSrc(r),
@@ -1068,26 +1072,26 @@ function nt(e, t, s, n, o, i) {
                   "data-sizes": i.getItemSizes(r),
                   draggable: "false",
                   alt: i.getItemAlt(r),
-                  onLoad: t[2] || (t[2] = (...a) => i.imageLoaded && i.imageLoaded(...a)),
-                  onClick: (a) => i.zoomImage(r),
-                  onMousedown: t[3] || (t[3] = (a) => i.handleMouseDown(a)),
-                  onMouseup: t[4] || (t[4] = (a) => i.handleMouseUp(a)),
-                  onMouseleave: t[5] || (t[5] = (a) => i.handleMouseLeave(a)),
-                  onMousemove: t[6] || (t[6] = (a) => i.handleMouseMove(a)),
-                  onTouchstart: t[7] || (t[7] = (a) => i.handleMouseDown(a)),
-                  onTouchmove: t[8] || (t[8] = (a) => i.handleMouseMove(a)),
-                  onTouchend: t[9] || (t[9] = (a) => i.handleMouseUp(a))
-                }, null, 40, we)),
-                f(h("div", ye, [
+                  onLoad: t[2] || (t[2] = (...h) => i.imageLoaded && i.imageLoaded(...h)),
+                  onClick: (h) => i.zoomImage(r),
+                  onMousedown: t[3] || (t[3] = (h) => i.handleMouseDown(h)),
+                  onMouseup: t[4] || (t[4] = (h) => i.handleMouseUp(h)),
+                  onMouseleave: t[5] || (t[5] = (h) => i.handleMouseLeave(h)),
+                  onMousemove: t[6] || (t[6] = (h) => i.handleMouseMove(h)),
+                  onTouchstart: t[7] || (t[7] = (h) => i.handleMouseDown(h)),
+                  onTouchmove: t[8] || (t[8] = (h) => i.handleMouseMove(h)),
+                  onTouchend: t[9] || (t[9] = (h) => i.handleMouseUp(h))
+                }, null, 40, pe)),
+                f(a("div", xe, [
                   S(e.$slots, "loading", {}, () => [
-                    xe
+                    Ie
                   ])
                 ], 512), [
                   [M, o.imageLoading]
                 ])
               ], 4)), [
                 [m]
-              ]) : (u(), d("div", Ie, [
+              ]) : (u(), d("div", Se, [
                 !i.checkIsMp4(i.getItemSrc(r)) && i.getMediaType(r) === "video" ? f((u(), d("iframe", {
                   class: "cool-lightbox-video",
                   "data-autoplay": i.setAutoplay(r),
@@ -1098,11 +1102,13 @@ function nt(e, t, s, n, o, i) {
                   allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
                   allowfullscreen: ""
                 }, [
-                  z(`
+                  P(`
               `)
-                ], 12, Se)), [
+                ], 12, Me)), [
                   [g]
                 ]) : c("", !0),
+                a("pre", null, "                " + R(i.getVideoUrl(i.getItemSrc(r))) + `
+              `, 1),
                 i.getMediaType(r) === "iframe" || i.getPDFurl(i.getItemSrc(r)) ? (u(), d("iframe", {
                   class: "cool-lightbox-pdf",
                   src: i.getItemSrc(r),
@@ -1110,7 +1116,7 @@ function nt(e, t, s, n, o, i) {
                   frameborder: "0",
                   allowfullscreen: ""
                 }, `
-              `, 8, Me)) : c("", !0),
+              `, 8, _e)) : c("", !0),
                 i.checkIsMp4(i.getItemSrc(r)) || i.getMediaType(r) === "webVideo" ? f((u(), d("video", {
                   "data-autoplay": i.setAutoplay(r),
                   class: "cool-lightbox-video",
@@ -1121,19 +1127,19 @@ function nt(e, t, s, n, o, i) {
                   l: "",
                   poster: ""
                 }, [
-                  h("source", {
+                  a("source", {
                     src: i.checkIsMp4(i.getItemSrc(r)),
                     type: "video/" + (i.getVideoExt(i.getItemSrc(r)) ? i.getVideoExt(i.getItemSrc(r)) : i.getExtFromItem(r))
-                  }, null, 8, ke),
-                  z(" Sorry, your browser doesn't support embedded videos ")
-                ], 12, _e)), [
+                  }, null, 8, Te),
+                  P(" Sorry, your browser doesn't support embedded videos ")
+                ], 12, ke)), [
                   [g]
                 ]) : c("", !0)
               ]))
             ], 2))), 128))
           ], 4)) : c("", !0),
-          s.effect === "fade" ? (u(), d("div", Te, [
-            h("div", Pe, [
+          s.effect === "fade" ? (u(), d("div", ze, [
+            a("div", Pe, [
               I(p, {
                 name: "cool-lightbox-slide-change",
                 mode: "out-in"
@@ -1151,14 +1157,14 @@ function nt(e, t, s, n, o, i) {
                     }, {
                       default: b(() => [
                         (u(), d("picture", { key: o.imgIndex }, [
-                          (u(!0), d(T, null, P(i.getPictureSources(o.imgIndex), (l, r) => (u(), d("source", {
+                          (u(!0), d(T, null, z(i.getPictureSources(o.imgIndex), (l, r) => (u(), d("source", {
                             srcset: l.srcset,
                             type: l.type,
                             media: l.media,
                             sizes: l.sizes || i.getItemSizes(o.imgIndex),
                             key: `source-${o.imgIndex}-${r}`
-                          }, null, 8, Be))), 128)),
-                          h("img", {
+                          }, null, 8, Ce))), 128)),
+                          a("img", {
                             src: i.getItemSrc(o.imgIndex),
                             srcset: i.getItemSrcSet(o.imgIndex),
                             sizes: i.getItemSizes(o.imgIndex),
@@ -1170,7 +1176,7 @@ function nt(e, t, s, n, o, i) {
                             onMouseup: t[27] || (t[27] = (l) => i.handleMouseUp(l)),
                             onMouseleave: t[28] || (t[28] = (l) => i.handleMouseLeave(l)),
                             onMousemove: t[29] || (t[29] = (l) => i.handleMouseMove(l))
-                          }, null, 40, Ce)
+                          }, null, 40, Le)
                         ]))
                       ]),
                       _: 1
@@ -1193,24 +1199,24 @@ function nt(e, t, s, n, o, i) {
                           onMouseup: t[21] || (t[21] = (l) => i.handleMouseUp(l)),
                           onMouseleave: t[22] || (t[22] = (l) => i.handleMouseLeave(l)),
                           onMousemove: t[23] || (t[23] = (l) => i.handleMouseMove(l))
-                        }, null, 40, ze))
+                        }, null, 40, Be))
                       ]),
                       _: 1
                     })),
-                    f(h("div", Le, [
+                    f(a("div", Ee, [
                       S(e.$slots, "loading", {}, () => [
-                        Ee
+                        Ve
                       ])
                     ], 512), [
                       [M, o.imageLoading]
                     ])
-                  ], 4)) : (u(), d("div", Ve, [
+                  ], 4)) : (u(), d("div", We, [
                     I(p, {
                       name: "cool-lightbox-slide-change",
                       mode: "out-in"
                     }, {
                       default: b(() => [
-                        h("div", null, [
+                        a("div", null, [
                           !i.checkIsMp4(i.getItemSrc(o.imgIndex)) && i.getMediaType(o.imgIndex) === "video" ? f((u(), d("iframe", {
                             class: "cool-lightbox-video",
                             "data-autoplay": i.setAutoplay(o.imgIndex),
@@ -1221,9 +1227,9 @@ function nt(e, t, s, n, o, i) {
                             allow: "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture",
                             allowfullscreen: ""
                           }, [
-                            z(`
+                            P(`
                     `)
-                          ], 12, We)), [
+                          ], 12, Fe)), [
                             [g]
                           ]) : c("", !0),
                           i.getMediaType(o.imgIndex) === "iframe" || i.getPDFurl(i.getItemSrc(o.imgIndex)) ? (u(), d("iframe", {
@@ -1233,7 +1239,7 @@ function nt(e, t, s, n, o, i) {
                             frameborder: "0",
                             allowfullscreen: ""
                           }, `
-                    `, 8, Fe)) : c("", !0),
+                    `, 8, De)) : c("", !0),
                           i.checkIsMp4(i.getItemSrc(o.imgIndex)) || i.getMediaType(o.imgIndex) === "webVideo" ? f((u(), d("video", {
                             class: "cool-lightbox-video",
                             "data-autoplay": i.setAutoplay(o.imgIndex),
@@ -1243,12 +1249,12 @@ function nt(e, t, s, n, o, i) {
                             controlslist: "nodownload",
                             poster: ""
                           }, [
-                            h("source", {
+                            a("source", {
                               src: i.checkIsMp4(i.getItemSrc(o.imgIndex)),
                               type: "video/" + (i.getVideoExt(i.getItemSrc(o.imgIndex)) ? i.getVideoExt(i.getItemSrc(o.imgIndex)) : i.getExtFromItem(o.imgIndex))
-                            }, null, 8, Oe),
-                            z(" Sorry, your browser doesn't support embedded videos ")
-                          ], 12, De)), [
+                            }, null, 8, Ne),
+                            P(" Sorry, your browser doesn't support embedded videos ")
+                          ], 12, Oe)), [
                             [g]
                           ]) : c("", !0)
                         ])
@@ -1263,7 +1269,7 @@ function nt(e, t, s, n, o, i) {
           ])) : c("", !0),
           I(p, { name: "cool-lightbox-modal" }, {
             default: b(() => [
-              f(h("div", Ne, [
+              f(a("div", Ae, [
                 I(p, {
                   name: "cool-lightbox-slide-change",
                   mode: "out-in"
@@ -1272,7 +1278,7 @@ function nt(e, t, s, n, o, i) {
                     i.checkIfIsObject(o.imgIndex) && s.items[o.imgIndex].title ? (u(), d("h6", {
                       key: "title",
                       innerHTML: s.items[o.imgIndex].title
-                    }, null, 8, Ae)) : c("", !0)
+                    }, null, 8, Xe)) : c("", !0)
                   ]),
                   _: 1
                 }),
@@ -1284,7 +1290,7 @@ function nt(e, t, s, n, o, i) {
                     i.checkIfIsObject(o.imgIndex) && s.items[o.imgIndex].description ? (u(), d("p", {
                       key: "description",
                       innerHTML: s.items[o.imgIndex].description
-                    }, null, 8, Xe)) : c("", !0)
+                    }, null, 8, Ye)) : c("", !0)
                   ]),
                   _: 1
                 })
@@ -1294,7 +1300,7 @@ function nt(e, t, s, n, o, i) {
             ]),
             _: 1
           }),
-          h("div", {
+          a("div", {
             class: x(["cool-lightbox-toolbar", i.buttonsClasses])
           }, [
             this.slideshow && s.items.length > 1 ? (u(), d("button", {
@@ -1304,22 +1310,22 @@ function nt(e, t, s, n, o, i) {
               class: "cool-lightbox-toolbar__btn",
               onClick: t[30] || (t[30] = (...l) => i.togglePlaySlideshow && i.togglePlaySlideshow(...l))
             }, [
-              o.isPlayingSlideShow ? (u(), d("svg", He, qe)) : (u(), d("svg", Ze, Ue))
-            ], 8, Ye)) : c("", !0),
+              o.isPlayingSlideShow ? (u(), d("svg", je, Ge)) : (u(), d("svg", Re, He))
+            ], 8, Ze)) : c("", !0),
             s.items.length > 1 && s.gallery ? (u(), d("button", {
               key: 1,
               type: "button",
               onClick: t[31] || (t[31] = (l) => o.showThumbs = !o.showThumbs),
               title: s.translations.showThumbNails,
               class: "cool-lightbox-toolbar__btn"
-            }, Ke, 8, Ge)) : c("", !0),
+            }, Qe, 8, Je)) : c("", !0),
             s.fullScreen ? (u(), d("button", {
               key: 2,
               type: "button",
               onClick: t[32] || (t[32] = (...l) => i.toggleFullScreenMode && i.toggleFullScreenMode(...l)),
               class: "cool-lightbox-toolbar__btn",
               title: s.translations.fullScreen
-            }, et, 8, Qe)) : c("", !0),
+            }, tt, 8, $e)) : c("", !0),
             s.showCloseButton ? (u(), d("button", {
               key: 3,
               type: "button",
@@ -1328,25 +1334,25 @@ function nt(e, t, s, n, o, i) {
               onClick: t[33] || (t[33] = (...l) => i.close && i.close(...l))
             }, [
               S(e.$slots, "close", {}, () => [
-                it
+                st
               ])
-            ], 8, tt)) : c("", !0)
+            ], 8, it)) : c("", !0)
           ], 2)
         ], 36),
         I(p, { name: "cool-lightbox-modal" }, {
           default: b(() => [
-            o.isZooming && s.useZoomBar ? (u(), d("div", st, [
-              ot,
-              f(h("input", {
+            o.isZooming && s.useZoomBar ? (u(), d("div", ot, [
+              lt,
+              f(a("input", {
                 type: "range",
                 "onUpdate:modelValue": t[40] || (t[40] = (l) => o.zoomBar = l),
                 name: "points",
                 min: "0",
                 max: "50"
               }, null, 512), [
-                [R, o.zoomBar]
+                [U, o.zoomBar]
               ]),
-              lt
+              nt
             ])) : c("", !0)
           ]),
           _: 1
@@ -1356,7 +1362,7 @@ function nt(e, t, s, n, o, i) {
     _: 3
   });
 }
-const ht = /* @__PURE__ */ ie(se, [["render", nt]]);
+const ht = /* @__PURE__ */ se(oe, [["render", rt]]);
 export {
   ht as CoolLightBox
 };

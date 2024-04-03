@@ -150,6 +150,9 @@
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
               </iframe>
+              <pre>
+                {{ getVideoUrl(getItemSrc(itemIndex)) }}
+              </pre>
 
               <iframe
                 class="cool-lightbox-pdf"
@@ -1703,6 +1706,7 @@ export default {
 
       const youtubeUrl = this.getYoutubeUrl(itemSrc)
       const vimeoUrl = this.getVimeoUrl(itemSrc)
+      const vzaarUrl = this.getVzaarVideo(itemSrc)
       const mp4Url = this.checkIsMp4(itemSrc)
 
       if(youtubeUrl) {
@@ -1711,6 +1715,10 @@ export default {
 
       if(vimeoUrl) {
         return vimeoUrl
+      }
+
+      if(vzaarUrl) {
+        return vzaarUrl
       }
 
       if(mp4Url) {
@@ -1773,6 +1781,17 @@ export default {
       const result = url.match(/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i)
       if(result !== null) {
         return '//player.vimeo.com/video/'+result[1]+'?hd=1&show_title=1&show_byline=1&show_portrait=0&fullscreen=1'
+      }
+
+      return false
+    },
+    getVzaarVideo(url){
+      // url is like this: https://view.vzaar.com/6f69c3b9-ab5d-7a42-5bfc-66009177ab78/player
+      const vzaarRegex = /(?:https?:\/\/)?(?:view\.)?vzaar\.com\/(?:videos\/)?([a-z0-9-]+)(?:\/player)?/i
+      const vzaarId = (url.match(vzaarRegex)) ? RegExp.$1 : false
+
+      if(vzaarId) {
+        return 'https://view.vzaar.com/'+vzaarId+'/player'
       }
 
       return false
